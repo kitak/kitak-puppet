@@ -1,4 +1,4 @@
-class js_testrunner::users {
+class ci_jstest::users {
   group { 'ci':
     gid    => 1002,
     ensure =>  present,

@@ -1,4 +1,4 @@
-class js_testrunner::install {
+class ci_jstest::install {
   exec { 'install testem':
     user    =>  'ci',
     environment => ['NDENV_ROOT="/home/ci/ndenv"'],
