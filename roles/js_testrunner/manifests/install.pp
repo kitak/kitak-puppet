@@ -1,8 +1,9 @@
 class js_testrunner::install {
   exec { 'install testem':
     user    =>  'ci',
+    environment => ['NDENV_ROOT="/home/ci/ndenv"'],
     path    => ['/bin', '/usr/bin'],
-    command => "sh -c 'npm install -g testem'",
-    unless  => 'which testem',
+    command => "/bin/bash -c 'source /home/ci/.bash_profile; npm install -g testem'",
+    unless  => 'test -x /home/ci/ndenv/shims/testem',
   }
 }
