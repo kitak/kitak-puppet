@@ -3,7 +3,7 @@ class ndenv::build() {
     user        => 'ci',
     environment => ['NDENV_ROOT="/home/ci/ndenv"'],
     path        => ['/bin', '/usr/bin', '/home/ci/ndenv/plugins/node-build/bin'],
-    command     => "node-build ${ndenv::use_version} /home/ci/ndenv/versions/${ndenv::use_version}",
+    command     => "node-build ${ndenv::use_version} /home/ci/ndenv/versions/${ndenv::use_version}; /bin/bash -c 'source ~/.bash_profile; ndenv rehash'",
     unless      => "test -d /home/ci/ndenv/versions/${ndenv::use_version}",
     timeout     => 0,
   }

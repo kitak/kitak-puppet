@@ -6,6 +6,6 @@ class ci_jstest {
   include ::browser
 
      Class['ci_jstest::users']
-  -> Class["::ndenv::install"]
+  -> Class["::ndenv::build"]
   -> Class["ci_jstest::install"]
 }

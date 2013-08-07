@@ -3,8 +3,6 @@ git clone https://github.com/riywo/ndenv.git ndenv
 mkdir ndenv/shims ndenv/versions
 git clone https://github.com/riywo/node-build.git ndenv/plugins/node-build
  
-echo 'export NDENV_ROOT="/home/ci/ndenv"'  >> /home/ci/.bash_profile
-echo 'export PATH="$HOME/ndenv/bin:$PATH"' >> /home/ci/.bash_profile
-echo 'eval "$(ndenv init -)"'              >> /home/ci/.bash_profile
-
-rm ./install_ndenv.sh
+echo 'export NDENV_ROOT="/home/ci/ndenv"'     >> /home/ci/.bash_profile
+echo 'export PATH="/home/ci/ndenv/bin:$PATH"' >> /home/ci/.bash_profile
+echo 'eval "$(ndenv init -)"'                 >> /home/ci/.bash_profile
