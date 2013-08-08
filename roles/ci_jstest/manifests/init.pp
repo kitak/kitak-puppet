@@ -4,8 +4,7 @@ class ci_jstest {
   include ci_jstest::users
   include ci_jstest::install
   include ::browser
-  include ::mysql
-  include ::redis
+  include ::altria
 
      Class['ci_jstest::users']
   -> Class["::ndenv::build"]

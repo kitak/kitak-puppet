@@ -1,0 +1,5 @@
+mkdir -p /var/www/altria
+chown ci:ci /var/www/altria
+export RBENV_ROOT=/home/ci/rbenv
+sudo su ci -c '/bin/bash -c "source /home/ci/.bash_profile; cd /var/www/altria; git clone https://github.com/r7kamura/altria.git current; cd current; ./bin/altria setup; ./bin/altria start"'
+chown -R ci:ci /var/www/altria

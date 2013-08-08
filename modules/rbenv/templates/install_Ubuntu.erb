@@ -1,0 +1,8 @@
+cd /home/ci
+git clone https://github.com/sstephenson/rbenv.git rbenv
+mkdir rbenv/shims rbenv/versions
+git clone https://github.com/sstephenson/ruby-build.git rbenv/plugins/ruby-build
+ 
+echo 'export RBENV_ROOT="/home/ci/rbenv"'     >> /home/ci/.bash_profile
+echo 'export PATH="/home/ci/rbenv/bin:$PATH"' >> /home/ci/.bash_profile
+echo 'eval "$(rbenv init -)"'                 >> /home/ci/.bash_profile
