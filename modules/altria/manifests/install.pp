@@ -16,5 +16,6 @@ class altria::install {
     command     => "sh /home/ci/setup_altria.sh",
     creates     => "/var/www/altria",
     timeout     => 0,
+    require     => File['/home/ci/setup_altria.sh'],
   }
 }
