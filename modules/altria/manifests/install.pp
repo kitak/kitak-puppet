@@ -11,11 +11,16 @@ class altria::install {
     content => template("altria/start.erb"),
   }
 
+  file { '/var/www/altria/current/Gemfile.local':
+    ensure => present,
+    content => template("altria/Gemfile.local"),
+  }
+
   exec { 'setup altria':
     path        => ['/bin', '/usr/bin', '/sbin', '/usr/sbin', '/usr/local/sbin'],
     command     => "sh /home/ci/setup_altria.sh",
     creates     => "/var/www/altria",
     timeout     => 0,
-    require     => File['/home/ci/setup_altria.sh'],
+    require     => [File['/var/www/altria/current/Gemfile.local'], File['/home/ci/setup_altria.sh']],
   }
 }

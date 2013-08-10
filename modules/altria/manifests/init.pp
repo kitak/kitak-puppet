@@ -3,6 +3,7 @@ class altria {
   include redis
   include rbenv
   include altria::install
+  include altria::config
 
      Class['rbenv::build']
   -> Class['mysql::service']

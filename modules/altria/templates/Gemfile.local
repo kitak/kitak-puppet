@@ -1,0 +1,1 @@
+gem "altria-git", git: "https://github.com/r7kamura/altria-git.git"
