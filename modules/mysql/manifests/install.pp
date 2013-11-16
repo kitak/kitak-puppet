@@ -4,13 +4,7 @@ class mysql::install {
     'libmysqlclient-dev',
   ]
 
-  exec { 'preinstall mysql':
-    path =>  ['/usr/bin', '/bin', '/sbin', '/usr/sbin', '/usr/local/sbin'],
-    command => 'apt-get update',
-  }
-
   package { $mysql_packages:
     ensure =>  installed,
-    require => Exec['preinstall mysql'],
   }
 }
