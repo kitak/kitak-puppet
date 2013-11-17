@@ -1,5 +1,6 @@
 define plenv::install (
-  $user = $name,
+  $version = $name,
+  $user,
 ) {
 
   $home = $user ? {
@@ -14,7 +15,7 @@ define plenv::install (
     user        => $user,
     cwd         => $home,
     environment => [ "HOME=${home}" ],
-    path        => "/bin:/usr/local/bin:/usr/bin",
+    path        => "${plenv_root}/bin:/bin:/usr/local/bin:/usr/bin",
     timeout     => 0,
   }
 
@@ -37,8 +38,20 @@ eval \"\$(plenv init -)\"
     unless  => "grep 'plenv init -' ${profile}",
   }
 
+  exec { "plenv::install ${user} ${version}":
+    command => "plenv install ${version}",
+    creates => "${plenv_root}/versions/${version}",
+  }
+
+  exec { "plenv::global ${user} ${version}":
+    command => "plenv global ${version}",
+    unless  => "grep '${version}' ${plenv_root}/version",
+  }
+
      Exec["install plenv for ${user}"]
   -> Exec["install perl-build for ${user}"]
   -> Exec["add plenv setting for ${user}"]
+  -> Exec["plenv::install ${user} ${version}"]
+  -> Exec["plenv::global ${user} ${version}"]
 
 }
